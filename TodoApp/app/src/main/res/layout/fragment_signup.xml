@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signUpFragment_viewPositionManager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.SignUpFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpFragment_emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/signUp_email"
+        app:layout_constraintStart_toStartOf="@id/signUpFragment_emailInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.choco_tyranno.todoapp.ui.login.view.EmailValidateResultView
+        android:id="@+id/signUpFragment_emailFormResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/signUp_formValid"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/signUpFragment_emailLabel"
+        app:layout_constraintTop_toTopOf="@id/signUpFragment_emailLabel" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signUpFragment_emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="@string/prompt_email"
+        android:background="@drawable/view_simpleoutline"
+        android:hint="@string/signUp_emailHint"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_emailLabel" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpFragment_emailFormDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/signUp_emailFormDesc"
+        app:layout_constraintStart_toStartOf="@id/signUpFragment_emailInput"
+        app:layout_constraintEnd_toEndOf="@id/signUpFragment_emailInput"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_emailInput" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpFragment_passwordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/signUp_password"
+        app:layout_constraintStart_toStartOf="@id/signUpFragment_emailInput"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_emailFormDescription" />
+
+
+    <com.choco_tyranno.todoapp.ui.login.view.PasswordValidateResultView
+        android:id="@+id/signUpFragment_passwordFormResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/signUp_formValid"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/signUpFragment_passwordLabel"
+        app:layout_constraintTop_toTopOf="@id/signUpFragment_passwordLabel"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signUpFragment_passwordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/view_simpleoutline"
+        android:hint="@string/signUp_password"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpFragment_passwordLabel" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpFragment_passwordFormDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/signUp_passwordFormDesc"
+        app:layout_constraintStart_toStartOf="@id/signUpFragment_passwordInput"
+        app:layout_constraintEnd_toEndOf="@id/signUpFragment_passwordInput"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_passwordInput" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpFragment_passwordDoubleCheckLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/signUp_passwordDuple"
+        app:layout_constraintStart_toStartOf="@id/signUpFragment_emailInput"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_passwordFormDescription" />
+
+    <com.choco_tyranno.todoapp.ui.login.view.PasswordDoubleCheckResultView
+        android:id="@+id/signUpFragment_passwordDoubleCheckResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/signUp_passwordMatch"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/signUpFragment_passwordDoubleCheckLabel"
+        app:layout_constraintStart_toEndOf="@id/signUpFragment_passwordDoubleCheckLabel"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signUpFragment_passwordDoubleCheckInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/view_simpleoutline"
+        android:hint="@string/signUp_passwordDuple"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpFragment_passwordDoubleCheckLabel" />
+
+    <com.choco_tyranno.todoapp.ui.login.view.SignUpSubmitView
+        android:id="@+id/signUp_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:enabled="false"
+        android:text="회원가입"
+        app:layout_constraintEnd_toStartOf="@id/signUp_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_passwordDoubleCheckInput" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUp_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="취소"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/signUp_submit"
+        app:layout_constraintTop_toBottomOf="@id/signUpFragment_passwordDoubleCheckInput" />
+</androidx.constraintlayout.widget.ConstraintLayout>
