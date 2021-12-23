@@ -38,14 +38,14 @@ class AES256Util private constructor(){
         return IvParameterSpec(ivBytes)
     }
 
-//    private fun decrypt(input: String, key: SecretKey): String {
-//        val iv = getIv(input.substring(0, 16))
-//        val cryptText = input.substring(16, input.length)
-//        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-//        cipher.init(Cipher.DECRYPT_MODE, key, iv)
-//        val decrypt = cipher.doFinal(Base64Utils.decode(cryptText))
-//        return String(decrypt)
-//    }
+    private fun decrypt(input: String, key: SecretKey): String {
+        val iv = getIv(input.substring(0, 16))
+        val cryptText = input.substring(16, input.length)
+        val cipher = Cipher.getInstance("AES/GCM/NoPadding")
+        cipher.init(Cipher.DECRYPT_MODE, key, iv)
+        val decrypt = cipher.doFinal(Base64Utils.decode(cryptText))
+        return String(decrypt)
+    }
 
     companion object{
         val instance :AES256Util = AES256Util()

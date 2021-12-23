@@ -12,7 +12,9 @@ class AES256UtilTest {
     @Test
     fun encrypt(){
         val randomId = UUID.randomUUID().toString()
-        val encryptedId = AES256Util.instance.encrypt(randomId)
-        Log.d("@@Test","randomId:$randomId /  encryptedId: $encryptedId")
+        repeat(3){
+            val encryptedId = AES256Util.instance.encrypt(randomId)
+            Log.d("@@Test","randomId:$randomId /  encryptedId: $encryptedId")
+        }
     }
 }
