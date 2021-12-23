@@ -3,4 +3,48 @@
 
     <string name="facebook_app_id" translatable="false">967177360580441</string>
     <string name="facebook_client_token" translatable="false">fb967177360580441</string>
+    <!-- related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="appSharedPreferences_id">9817570512352</string>
+    <string name="defaultAuthExpireTimeMillis">604800000</string>
+
+    <!-- create account-->
+    <string name="signUp_email">이메일 주소</string>
+    <string name="signUp_emailHint">example@todo.com</string>
+    <string name="signUp_formValid"> - 적합한 형식입니다.</string>
+    <string name="signUp_formInvalid"> - 부적합한 형식입니다.</string>
+    <string name="signUp_emailRegexPattern"><![CDATA[
+    ^(?=.{3,20}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[A-Za-z0-9]{2,20}+(\\.[A-Za-z0-9-]{2,10})(\\.[A-Za-z]{2,10})*$
+]]></string>
+    <string name="signUp_emailFormDesc">
+        이메일 형식 :
+        \n 예시 : example@todo.co.kr
+        \n example 부분 :
+        \n •3자 이상 20자 이하
+        \n •[-_.]을 제외한 특수문자 및 화이트스페이스 불가
+        \n •연속된 [.] 또는 문자 맨 앞이나 맨 뒤의 [.] 불가
+        \n todo 부분 : 2자 이상 20자 이하
+        \n co 부분 : 2자 이상 10자 이하
+        \n kr 부분 : 2자 이상 10자 이하
+    </string>
+    <string name="signUp_passwordMatch"> - 비밀번호가 일치합니다.</string>
+    <string name="signUp_passwordNotMatch"> - 비밀번호가 일치하지 않습니다.</string>
+    <string name="signUp_password">비밀번호</string>
+    <string name="signUp_passwordDuple">비밀번호 확인</string>
+    <string name="signUp_passwordRegexPattern"><![CDATA[
+        ^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$
+        ]]>
+    </string>
+    <string name="signUp_passwordFormDesc">
+        비밀번호 형식 :
+        \n •8자 이상 20자 이하
+        \n •숫자, 영소문자, 영대문자, 특수문자[@#$%] 각 하나 이상 포함
+    </string>
 </resources>
