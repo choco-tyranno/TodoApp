@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signUpSuccessFragment_bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.login.SignUpSuccessDialogFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpSuccessFragment_completeMessagePrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="🎉"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@id/signUpSuccessFragment_welcomeMessagePrefix"
+        app:layout_constraintEnd_toStartOf="@id/signUpSuccessFragment_appLogo"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpSuccessFragment_completeMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.8"
+        android:gravity="center"
+        android:text="회원가입 성공!"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/signUpSuccessFragment_welcomeMessageSuffix"
+        app:layout_constraintStart_toStartOf="@id/signUpSuccessFragment_welcomeMessagePrefix"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpSuccessFragment_welcomeMessagePrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/signUpSuccess_welcomeMessagePrefix"
+        app:layout_constraintBottom_toBottomOf="@id/signUpSuccessFragment_appLogo"
+        app:layout_constraintEnd_toStartOf="@id/signUpSuccessFragment_appLogo"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/signUpSuccessFragment_appLogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_logo_bgremoved"
+        app:layout_constraintStart_toStartOf="@id/start"
+        app:layout_constraintEnd_toEndOf="@id/end"
+        app:layout_constraintTop_toBottomOf="@id/signUpSuccessFragment_completeMessage"
+        app:layout_constraintDimensionRatio="2:1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signUpSuccessFragment_welcomeMessageSuffix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/signUpSuccess_welcomeMessageSuffix"
+        app:layout_constraintBottom_toBottomOf="@id/signUpSuccessFragment_appLogo"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/signUpSuccessFragment_appLogo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signUpSuccessFragment_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/univ_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUpSuccessFragment_welcomeMessagePrefix" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

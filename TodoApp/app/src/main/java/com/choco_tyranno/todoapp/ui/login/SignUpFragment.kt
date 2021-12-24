@@ -1,32 +1,32 @@
 package com.choco_tyranno.todoapp.ui.login
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import com.choco_tyranno.todoapp.R
-import com.choco_tyranno.todoapp.data.models.User
 import com.choco_tyranno.todoapp.data.util.HashProvider
 import com.choco_tyranno.todoapp.ui.login.view.SignUpSubmitView
 import com.choco_tyranno.todoapp.ui.login.view.SignUpValueResultView
 import com.choco_tyranno.todoapp.ui.univ.ToastManager
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment(R.layout.fragment_signup) {
-    //    val args : SignUpFragmentArgs by navArgs()
     lateinit var email: AppCompatEditText
     lateinit var password: AppCompatEditText
     lateinit var passwordDuple: AppCompatEditText
@@ -40,11 +40,13 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
     private lateinit var passwordRegex: String
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         db = Firebase.firestore
+        handler = Handler(Looper.getMainLooper())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,6 +78,9 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             signUp()
         }
         cancel = view.findViewById<MaterialButton>(R.id.signUp_cancel)
+        cancel.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun observeSignUpValuesBySubmitView() {
@@ -86,25 +91,43 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
         )
     }
 
-    private fun toggleLoading() {
-        when (loading.visibility) {
-            View.VISIBLE -> loading.visibility = View.INVISIBLE
-            View.INVISIBLE -> loading.visibility = View.VISIBLE
-            View.GONE -> {}
+    private fun onLoading() {
+        handler.post() {
+            loading.visibility = View.VISIBLE
         }
     }
 
-    private fun popupDuplicateEmailMessage() {
-        toggleLoading()
-        ToastManager.toast(email.context, "중복된 이메일입니다. 다른 이메일로 시도해주세요.")
+    private fun offLoading() {
+        handler.post() {
+            loading.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun toast(message: String) {
+        handler.post { ToastManager.toast(email.context, message) }
     }
 
     private fun signUp() {
-        toggleLoading()
+        onLoading()
         checkDuplicateEmailWithFirebase()
     }
 
     private fun checkDuplicateEmailWithFirebase() {
+        //local method
+        fun popupSignUpSuccessDialog() {
+            handler.post {
+                val bottomSheet = SignUpSuccessDialogFragment()
+                bottomSheet.show(childFragmentManager, bottomSheet.tag)
+            }
+        }
+
+        //local method
+        fun popupDuplicateEmailMessage() {
+            offLoading()
+            toast(email.context.resources.getString(R.string.signUp_duplicateEmail))
+        }
+
+        //local method
         fun createAccount() {
             val context = email.context
             auth.createUserWithEmailAndPassword(
@@ -112,43 +135,33 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             )
                 .addOnCompleteListener { result ->
                     if (result.isSuccessful) {
-                        //성공
+                        popupSignUpSuccessDialog()
+                        return@addOnCompleteListener
                     }
-                    if (result.isCanceled) {
-                        ToastManager.toast(
-                            context,
-                            context.resources.getString(R.string.signUp_signUpRequestFail)
-                        )
-                    }
+                    toast(context.resources.getString(R.string.signUp_signUpRequestFail))
+                    return@addOnCompleteListener
                 }
         }
 
-        fun requestToAddEmail(emailRef: DocumentReference) {
-            val context = email.context
-            emailRef.update("email_list", FieldValue.arrayUnion(email.text.toString()))
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        createAccount()
-                    } else if (task.isCanceled) {
-                        ToastManager.toast(
-                            context,
-                            context.resources.getString(R.string.signUp_signUpRequestFail)
-                        )
-                    }
-                    toggleLoading()
-                }
-        }
-
+        //run start point.
         val emailRef = db.collection("users").document("emails")
-        emailRef.get().addOnSuccessListener { documentSnapshot ->
-            val emailList = documentSnapshot.toObject<EmailList>()
-            val alreadyExist = emailList?.alreadyExist(email.text.toString())
-            if (alreadyExist == true) {
-                popupDuplicateEmailMessage()
-                return@addOnSuccessListener
+        db.runTransaction { transaction ->
+            val snapshot = transaction.get(emailRef)
+            val emailList: ArrayList<String> = snapshot.get("list") as ArrayList<String>
+            for (item in emailList) {
+                Log.d(TAG, "emailList - item:$item")
             }
-            // add email to email_list
-            requestToAddEmail(emailRef)
+            if (emailList.contains(email.text.toString())) {
+                Log.d(TAG, "contains.!")
+                popupDuplicateEmailMessage()
+            } else {
+                Log.d(TAG, "not contains.!")
+                emailList.add(email.text.toString())
+                transaction.update(emailRef, "list", emailList)
+                createAccount()
+            }
+        }.addOnSuccessListener {
+            offLoading()
         }
     }
 
@@ -179,10 +192,8 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
     private fun validatesEmail() {
         if (isEmailValid()) {
             emailFormResult.onValidValue()
-
             return
         }
-
         emailFormResult.onInvalidValue()
     }
 
@@ -193,10 +204,20 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             passwordFormResult.onInvalidValue()
         }
     }
+
+    companion object {
+        const val TAG = "@@SignUp"
+    }
 }
 
 data class EmailList(val list: List<String>? = null) {
     fun alreadyExist(email: String): Boolean {
+        Log.d("@@EmailList", "list size:$list?.size")
+        if (list != null) {
+            for (item in list) {
+                Log.d("@@EmailList", "list item:$item")
+            }
+        }
         return list?.contains(email) == true
     }
 }
