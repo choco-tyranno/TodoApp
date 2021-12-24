@@ -47,4 +47,8 @@
         \n •8자 이상 20자 이하
         \n •숫자, 영소문자, 영대문자, 특수문자[@#$%] 각 하나 이상 포함
     </string>
+
+    <string name="signUp_duplicateEmail">이미 존재하는 이메일입니다. 다른 이메일로 시도해주세요.</string>
+    <string name="signUp_requestFail">데이터 전송에 실패했습니다. 다시 시도해주세요.</string>
+    <string name="signUp_signUpRequestFail">오류가 발생했습니다. 다시 시도해주세요.</string>
 </resources>
