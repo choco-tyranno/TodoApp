@@ -245,28 +245,22 @@
                     android:id="@+id/signUpFragment2_serviceTermsAndConditionsCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[필수]"
+                    android:checked="@={signUpViewModel.termsAndConditions}"
+                    android:text="@string/signUp_agreeRequired"
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@id/signUpFragment2_signUp_servicePolicy"
                     app:layout_constraintTop_toBottomOf="@id/signUpFragment2_signUp_servicePolicy" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/signUpFragment2_serviceTermsAndConditionsAgreement"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/signUpFragment2_serviceTermsAndConditionsAgreeDesc"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    app:layout_constraintHorizontal_bias="0.05"
                     android:layout_marginStart="8dp"
                     android:text="@string/signUp_serviceTermsAndConditionsAgreement"
                     app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
                     app:layout_constraintStart_toEndOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
-                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/signUp_serviceTermsAndConditionsAgreement"
-                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
-                    app:layout_constraintStart_toEndOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintEnd_toStartOf="@id/signUpFragment2_actionGetFullServiceTermsAndConditions"
                     app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -276,24 +270,27 @@
                     android:layout_marginEnd="16dp"
                     android:text="@string/signUp_actionSeefullDocument"
                     app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
-                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_servicePolicyBackground"
                     app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/signUpFragment2_privacyPolicyCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[필수]"
+                    android:checked="@={signUpViewModel.privacyPolicy}"
+                    android:text="@string/signUp_agreeRequired"
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
                     app:layout_constraintTop_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/signUpFragment2_privacyPolicyAgreement"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/signUpFragment2_privacyPolicyAgreeDesc"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    app:layout_constraintHorizontal_bias="0.05"
                     android:layout_marginStart="8dp"
                     android:text="@string/signUp_privacyPolicyAgreement"
+                    app:layout_constraintEnd_toStartOf="@id/signUpFragment2_actionGetFullPrivacyPolicy"
                     app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_privacyPolicyCheckBox"
                     app:layout_constraintStart_toEndOf="@id/signUpFragment2_privacyPolicyCheckBox"
                     app:layout_constraintTop_toTopOf="@id/signUpFragment2_privacyPolicyCheckBox" />
@@ -310,18 +307,20 @@
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/signUpFragment2_marketingSubscriptionCheckBox"
                     android:layout_width="wrap_content"
+                    android:checked="@={signUpViewModel.marketingSubscription}"
                     android:layout_height="wrap_content"
-                    android:text="[선택]"
+                    android:text="@string/signUp_agreeOptional"
                     android:textColor="@color/blue"
                     app:layout_constraintStart_toStartOf="@id/signUpFragment2_signUp_servicePolicy"
                     app:layout_constraintTop_toBottomOf="@id/signUpFragment2_privacyPolicyCheckBox" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/signUpFragment2_marketingSubscriptionAgreement"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/signUpFragment2_marketingSubscriptionAgreeDesc"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/signUp_marketingSubscriptionAgreement"
+                    app:layout_constraintEnd_toStartOf="@id/signUpFragment2_actionGetFullMarketingSubscription"
                     app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
                     app:layout_constraintStart_toEndOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
                     app:layout_constraintTop_toTopOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
@@ -336,7 +335,7 @@
                     app:layout_constraintTop_toTopOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
 
                 <View
-                    android:id="@+id/signUpFragment2_policyContentsDevider"
+                    android:id="@+id/signUpFragment2_policyContentsDivider"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="16dp"
@@ -345,15 +344,15 @@
                     app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
                     app:layout_constraintTop_toBottomOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
 
-
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/signUpFragment2_allAgreeCheckBox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="@={signUpViewModel.allAgree}"
                     android:text="@string/signUp_allPolicyAgreement"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_actionGetFullMarketingSubscription"
                     app:layout_constraintStart_toStartOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
-                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_policyContentsDevider" />
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_policyContentsDivider" />
 
                 <ProgressBar
                     android:id="@+id/signUpFragment2_loading"
