@@ -23,7 +23,7 @@
     <string name="signUp_actionSendEmail">인증번호 발송</string>
     <string name="signUp_emailInputCaution">인증번호 전송을 위해 정확인 이메일 주소를 입력해주세요.</string>
     <string name="signUp_certificationNumber">인증번호</string>
-    <string name="signUp_password">비밀번호(8자 이상,문자/숫자/특수문자 사용 가능)</string>
+    <string name="signUp_password">비밀번호(8자 이상, 한글/영문/숫자/특수문자 사용 가능)</string>
     <string name="signUp_passwordConfirm">비밀번호 확인</string>
     <string name="signUp_emailAddress">이메일 주소</string>
     <string name="signUp_servicePolicyNeeds">회원가입을 위해 서비스 정책에 대한 회원님의 동의가 필요합니다.</string>
@@ -56,14 +56,14 @@
     <string name="signUp_passwordMatch"> - 비밀번호가 일치합니다.</string>
     <string name="signUp_passwordNotMatch"> - 비밀번호가 일치하지 않습니다.</string>
     <string name="signUp_passwordForm"> - 8자 이상 20자 이하의 비밀번호를 입력해주세요.</string>
-    <string name="signUp_passwordInvalid"> - 유효하지 않은 비밀번호입니다.</string>
+    <string name="signUp_passwordInvalid"> - 사용 불가능한 특수문자가 입력되었습니다.</string>
     <string name="signUp_passwordTooShort"> - 8자 미만의 비밀번호입니다.</string>
     <string name="signUp_passwordTooLong"> - 20자가 초과된 비밀번호입니다.</string>
     <string name="signUp_passwordFine">비밀번호 안정성 : 더 강력하면 좋겠지만, 괜찮아요. 🤔</string>
     <string name="signUp_passwordGood">비밀번호 안정성 : 적정합니다. 🤓</string>
     <string name="signUp_passwordNice">비밀번호 안정성 : 강력합니다. 😍</string>
     <string name="signUp_passwordRegexPattern"><![CDATA[
-        ^[a-zA-Z0-9!~@#$%\\^&/♡☆*_+\\.\\,:;+=×÷>?<()\\-]{1,}$
+        ^[ㄱ-ㅎ가-힣a-zA-Z0-9!~@#$%\\^&/♡☆*_+\\.\\,:;+=×÷>?<()\\-]{1,}$
         ]]>
     </string>
     <string name="signUp_regexSpecialCharacterContained"><![CDATA[
