@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.login.fragments.SignUpFragment2">
+
+    <data>
+
+        <variable
+            name="signUpViewModel"
+            type="com.choco_tyranno.todoapp.ui.login.SignUpViewModel" />
+    </data>
+
+    <com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/signUpFragment2_viewParent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_pageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{(v)->signUpViewModel.testClick(v)}"
+                    android:text="@string/signUp_pageTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signUpFragment2_nameInputBoxParent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:nameInputBox_errorFlag='@{signUpViewModel.name}'
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_pageTitle"
+                    app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpFragment2_nameInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/signUp_userName"
+                        android:text="@={signUpViewModel.name}"
+                        tools:text="초코 티라노" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signUpFragment2_emailInputBoxParent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:helperTextEnabled="true"
+                    app:helperText="@string/signUp_emailInputCaution"
+                    android:enabled="@{signUpViewModel.emailInputBoxEnabled}"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+                    <com.choco_tyranno.todoapp.ui.login.view.EmailAddressInputBox
+                        android:id="@+id/signUpFragment2_emailInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/signUp_emailAddress"
+                        android:inputType="textEmailAddress"
+                        android:text="@={signUpViewModel.insertedEmail}"
+                        tools:text="choco.tyranno@gmaiqdqwqwdqwdqwdl.com" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signUpFragment2_certificationCodeReleaser"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:enabled="@{signUpViewModel.certificationCodeReleaserEnabled}"
+                    android:onClick="@{v->signUpViewModel.onCertificationCodeReleaserClicked(v)}"
+                    android:text="@string/signUp_actionSendEmail"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_emailInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_emailInputBoxParent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/signUpFragment2_certificationCodeExpirationTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    tools:visibility="visible"
+                    tools:text="00:00"
+                    android:gravity="center_vertical"
+                    android:text="@{signUpViewModel.certificationCodeExpirationTimerText}"
+                    android:visibility="@{signUpViewModel.certificationCodeExpirationTimerVisibility}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/signUpFragment2_certificationCodeInputBoxParent"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_certificationCodeInputBoxParent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signUpFragment2_certificationCodeInputBoxParent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:enabled="@{signUpViewModel.certificationCodeInputBoxEnabled}"
+                    android:visibility="@{signUpViewModel.certificationCodeInputBoxVisibility}"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_certificationCodeReleaser"
+                    app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpFragment2_certificationCodeInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/signUp_certificationNumber"
+                        android:text="@={signUpViewModel.insertedCertificationCode}"
+                        tools:text="12345" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/signUpFragment2_certificationCodeInputBoxHelper"
+                    android:layout_width="0dp"
+                    android:visibility="@{signUpViewModel.certificationCodeInputBoxHelperVisibility}"
+                    android:layout_marginHorizontal="14dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    app:certificationCodeInputBoxHelper_mode="@{signUpViewModel.certificationCodeInputBoxHelperMode}"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_certificationCodeInputBoxParent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_certificationCodeInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_certificationCodeInputBoxParent"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:src="@drawable/ic_baseline_cancel_24"
+                    android:id="@+id/signUpFragment2_certificationCodeInputBoxClearButton"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="@{v->signUpViewModel.onCertificationCodeInputBoxClearButtonClicked(v)}"
+                    android:layout_width="wrap_content"
+                    android:visibility="@{signUpViewModel.certificationCodeInputBoxClearButtonVisibility}"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_certificationCodeExpirationTimer"
+                    app:layout_constraintEnd_toStartOf="@id/signUpFragment2_certificationCodeExpirationTimer"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_certificationCodeExpirationTimer" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signUpFragment2_passwordInputBoxParent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:password_mode="@{signUpViewModel.passwordMode}"
+                    app:counterEnabled="true"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:counterMaxLength="20"
+                    app:endIconMode="password_toggle"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_certificationCodeInputBoxHelper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpFragment2_passwordInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/signUp_password"
+                        android:inputType="textPassword"
+                        android:text="@={signUpViewModel.password}"
+                        tools:text="12314" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signUpFragment2_passwordConfirmInputBoxParent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:counterEnabled="true"
+                    app:passwordConfirm_mode="@{signUpViewModel.passwordConfirmMode}"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:counterMaxLength="10"
+                    app:endIconMode="password_toggle"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_passwordInputBoxParent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpFragment2_passwordConfirmInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/signUp_passwordConfirm"
+                        android:inputType="textPassword"
+                        android:text="@={signUpViewModel.passwordConfirm}"
+                        tools:text="12fsdf" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_servicePolicyNeeds"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signUp_servicePolicyNeeds"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_passwordConfirmInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_passwordConfirmInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_passwordConfirmInputBoxParent" />
+
+                <View
+                    android:id="@+id/signUpFragment2_servicePolicyBackground"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="-16dp"
+                    android:layout_marginBottom="-16dp"
+                    android:background="@drawable/view_simpleoutline"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_allAgreeCheckBox"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_passwordConfirmInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_passwordConfirmInputBoxParent"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_signUp_servicePolicy" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_signUp_servicePolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/signUp_servicePolicy"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_passwordConfirmInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_servicePolicyNeeds" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[필수]"
+                    android:textColor="@color/red"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_signUp_servicePolicy"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_signUp_servicePolicy" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_serviceTermsAndConditionsAgreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/signUp_serviceTermsAndConditionsAgreement"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintStart_toEndOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/signUp_serviceTermsAndConditionsAgreement"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintStart_toEndOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_actionGetFullServiceTermsAndConditions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/signUp_actionSeefullDocument"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/signUpFragment2_privacyPolicyCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[필수]"
+                    android:textColor="@color/red"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_serviceTermsAndConditionsCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_privacyPolicyAgreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/signUp_privacyPolicyAgreement"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_privacyPolicyCheckBox"
+                    app:layout_constraintStart_toEndOf="@id/signUpFragment2_privacyPolicyCheckBox"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_privacyPolicyCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_actionGetFullPrivacyPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signUp_actionSeefullDocument"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_privacyPolicyCheckBox"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_actionGetFullServiceTermsAndConditions"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_privacyPolicyCheckBox" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/signUpFragment2_marketingSubscriptionCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[선택]"
+                    android:textColor="@color/blue"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_signUp_servicePolicy"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_privacyPolicyCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_marketingSubscriptionAgreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/signUp_marketingSubscriptionAgreement"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
+                    app:layout_constraintStart_toEndOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/signUpFragment2_actionGetFullMarketingSubscription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signUp_actionSeefullDocument"
+                    app:layout_constraintBottom_toBottomOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_actionGetFullPrivacyPolicy"
+                    app:layout_constraintTop_toTopOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
+
+                <View
+                    android:id="@+id/signUpFragment2_policyContentsDevider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_nameInputBoxParent"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_marketingSubscriptionCheckBox" />
+
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/signUpFragment2_allAgreeCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/signUp_allPolicyAgreement"
+                    app:layout_constraintStart_toStartOf="@id/signUpFragment2_marketingSubscriptionCheckBox"
+                    app:layout_constraintTop_toBottomOf="@id/signUpFragment2_policyContentsDevider" />
+
+                <ProgressBar
+                    android:id="@+id/signUpFragment2_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
+</layout>

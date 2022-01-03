@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    redesign with your own drawables to fit your taste-->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="45"
+                android:startColor="#76FF03"
+                android:centerColor="#64DD17"
+                android:endColor="#fff" />
+
+            <corners android:radius="40dp"/>
+
+        </shape>
+    </item>
+
+    <item android:left="40dp"
+        android:right="40dp"
+        android:top="40dp"
+        android:bottom="40dp"
+        android:gravity="center">
+        <bitmap android:src="@drawable/ic_kakao_talk"
+            android:gravity="center" />
+    </item>
+
+</layer-list>

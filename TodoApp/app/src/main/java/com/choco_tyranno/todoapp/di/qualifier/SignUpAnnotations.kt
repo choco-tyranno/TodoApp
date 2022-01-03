@@ -1,0 +1,3 @@
+package com.choco_tyranno.todoapp.di.qualifier
+
+annotation class CertificationCodeInputBoxHelper

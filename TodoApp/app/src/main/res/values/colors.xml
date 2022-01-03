@@ -10,4 +10,12 @@
     <color name="red">#F00</color>
     <color name="blue">#00F</color>
     <color name="green">#0F0</color>
+
+    <color name="my_sy_sky">#4dd0e1</color>
+    <color name="my_deep_navy">#0c0e44</color>
+    <color name="my_tangerine_yellow">#ffd600</color>
+    <color name="my_sy_green">#96c902</color>
+
+    <color name="kakao_brand_color">#FEE500</color>
+    <color name="facebook_brand_color">#3b5998</color>
 </resources>

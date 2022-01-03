@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signInFragment_viewPositionManager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/fragment_horizontal_margin"
+    android:paddingTop="@dimen/fragment_vertical_margin"
+    android:paddingRight="@dimen/fragment_horizontal_margin"
+    android:paddingBottom="@dimen/fragment_vertical_margin"
+    tools:context=".ui.login.SignInFragment">
+
+    <com.choco_tyranno.todoapp.ui.login.view.KakaoSignInView
+        android:id="@+id/signInFragment_kakaoLogin"
+        app:layout_constraintTop_toBottomOf="@id/signInFragment_signIn"
+        android:layout_width="0dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/kakao_brand_color"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:text="@string/signIn_actionSignUpWithKakao"
+        app:layout_constraintEnd_toEndOf="@id/signInFragment_emailInput"
+        app:layout_constraintStart_toStartOf="@id/signInFragment_emailInput" />
+
+    <com.choco_tyranno.todoapp.ui.login.view.FacebookSignInView
+        android:id="@+id/signInFragment_facebookLogin"
+        app:layout_constraintTop_toBottomOf="@id/signInFragment_kakaoLogin"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/facebook_brand_color"
+        android:layout_marginTop="8dp"
+        android:text="@string/signIn_actionSignUpWithFacebook"
+        app:layout_constraintEnd_toEndOf="@id/signInFragment_emailInput"
+        app:layout_constraintStart_toStartOf="@id/signInFragment_emailInput" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/signInFragment_appLogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="2:1"
+        android:src="@drawable/new_todo_logo_cropped"
+        app:layout_constraintEnd_toEndOf="@id/signInFragment_emailInput"
+        app:layout_constraintStart_toStartOf="@id/signInFragment_emailInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signInFragment_emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:autofillHints="@string/prompt_email"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signInFragment_appLogo" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signInFragment_passwordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:autofillHints="@string/prompt_password"
+        android:hint="@string/prompt_password"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInFragment_emailInput" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInFragment_signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="로그인"
+        app:layout_constraintEnd_toStartOf="@id/signInFragment_signUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signInFragment_passwordInput" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInFragment_signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/signInFragment_signIn"
+        app:layout_constraintTop_toTopOf="@id/signInFragment_signIn" />
+
+    <ProgressBar
+        android:id="@+id/signInFragment_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

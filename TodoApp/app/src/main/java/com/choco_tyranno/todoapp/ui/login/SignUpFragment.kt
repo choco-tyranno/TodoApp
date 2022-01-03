@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.choco_tyranno.todoapp.R
 import com.choco_tyranno.todoapp.data.util.HashProvider
@@ -27,6 +28,7 @@ import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment(R.layout.fragment_signup) {
+    private val viewModel : MyLoginViewModel by activityViewModels()
     lateinit var email: AppCompatEditText
     lateinit var password: AppCompatEditText
     lateinit var passwordDuple: AppCompatEditText
@@ -81,6 +83,7 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
         cancel.setOnClickListener {
             findNavController().navigateUp()
         }
+        Log.d(TAG,"viewModel?:$viewModel")
     }
 
     private fun observeSignUpValuesBySubmitView() {
